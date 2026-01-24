@@ -8,12 +8,12 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("athul@gmail.com");
   const [password, setPassword] = useState("Athul@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      console.log("HANDLE LOGIN");
       const res = await axios.post(
         BASE_URL + "/login",
         {
@@ -25,6 +25,7 @@ const Login = () => {
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
       console.error(err);
     }
   };
@@ -95,6 +96,7 @@ const Login = () => {
             At least one uppercase letter
           </p>
           <div className="validator-hint hidden">Enter valid email address</div>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login
