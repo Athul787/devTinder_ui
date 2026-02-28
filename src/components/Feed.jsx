@@ -32,9 +32,13 @@ const Feed = () => {
   if (error) {
     return <p>{error}</p>;
   }
-  // console.log("feed");
-  // console.log(feed);
-  // console.log(feed.data);
+  if (!feed) {
+    return;
+  }
+  if (feed.length <= 0) {
+    console.log(feed);
+    return <h1 className="flex justify-center my-10">No new users found</h1>;
+  }
   return (
     feed && (
       <div className="flex justify-center my-10">
