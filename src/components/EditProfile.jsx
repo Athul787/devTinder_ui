@@ -11,9 +11,9 @@ const EditProfile = (user) => {
   user = user.user;
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [gender, setGender] = useState(user.gender);
-  const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-  const [about, setAbout] = useState(user.about);
+  const [gender, setGender] = useState(user.gender || "");
+  const [photoUrl, setPhotoUrl] = useState(user.photoUrl || "");
+  const [about, setAbout] = useState(user.about || "");
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const EditProfile = (user) => {
           gender,
           about,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(addUser(res?.data?.data));
       setShowToast(true);
@@ -72,8 +72,9 @@ const EditProfile = (user) => {
                   role="button"
                   className="btn menu bg-base-100 text-gray-500 border-gray-500 text-left justify-start px-3"
                 >
-                  {gender[0].toUpperCase() + gender.slice(1)}
+                  {gender ? gender[0].toUpperCase() + gender.slice(1) : "Null"}
                 </div>
+
                 <ul
                   tabIndex="-1"
                   className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
