@@ -1,4 +1,4 @@
-# DevTinder
+# DevFinder
 
 - Create a Vite + React application
 - Remove unecessary code and create a Hello World app
@@ -67,10 +67,10 @@ Router=/profile => Profile
         Frontend = http://3.106.230.188/
         Backend = http://3.106.230.188:3000/
 
-        Domain name = devtinder.com => 43.204.96.49
+        Domain name = devfinder.cloud => 43.204.96.49
 
-        Frontend = devtinder.com
-        Backend = devtinder.com:7777 => devtinder.com/api
+        Frontend = devfinder.cloud
+        Backend = devfinder.cloud:7777 => devfinder.cloud/api
 
         nginx config :
 
