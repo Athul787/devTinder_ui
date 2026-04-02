@@ -60,7 +60,24 @@ Router=/profile => Profile
         - sudo scp -r dist/* /var/www/html/
         - Enable port :80 of your instance
 
-- Backend - updated DB password - allowed ec2 instance public IP on mongodb server - npm intsall pm2 -g - pm2 start npm --name "devTinder-backend" -- start - pm2 logs - pm2 list, pm2 flush <name> , pm2 stop <name>, pm2 delete <name> - config nginx - /etc/nginx/sites-available/default - restart nginx - sudo systemctl restart nginx - Modify the BASEURL in frontend project to "/api"
+        To update fronted
+        - git pull
+        - npm i
+        - npm run build
+        - sudo scp -r dist/* /var/www/html/
+        - sudo systemctl restart nginx
+
+- Backend
+- updated DB password
+- allowed ec2 instance public IP on mongodb server
+- npm intsall pm2 -g
+- pm2 start npm --name "devTinder-backend" -- start
+- pm2 logs
+- pm2 list,
+  pm2 flush <name> ,
+  pm2 stop <name>,
+  pm2 delete <name> - config nginx - /etc/nginx/sites-available/default - restart nginx
+- sudo systemctl restart nginx - Modify the BASEURL in frontend project to "/api"
 
 # Ngxinx config:
 
@@ -70,7 +87,7 @@ Router=/profile => Profile
         Domain name = devfinder.cloud => 43.204.96.49
 
         Frontend = devfinder.cloud
-        Backend = devfinder.cloud:7777 => devfinder.cloud/api
+        Backend = devfinder.cloud:3000 => devfinder.cloud/api
 
         nginx config :
 
@@ -84,3 +101,9 @@ Router=/profile => Profile
             proxy_set_header Host $host;
             proxy_cache_bypass $http_upgrade;
         }
+
+     from chatgpt,   location / {
+                                    root /var/www/html;
+                                    index index.html;
+                                    try_files $uri $uri/ /index.html;
+                                }
